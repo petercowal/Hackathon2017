@@ -60,10 +60,11 @@ offset_angle = 0;
     inst.speed = 4 + random(4);
     instance_destroy();
 } else {
-    x = stuck.x + (offset_mirror * other.image_xscale) * offset_x;
+    x = stuck.x + (offset_mirror * stuck.image_xscale) * offset_x;
     y = stuck.y + offset_y;
     
-    image_angle = 90 + (offset_angle - 90)*(offset_mirror * other.image_xscale);
+    image_angle = 90 + (offset_angle - 90)*(offset_mirror * stuck.image_xscale);
+    //image_angle = 90;
     
 }
 </string>

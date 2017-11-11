@@ -4,7 +4,18 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\snd_arrow_hit_wood</sound>
+    <sound>sound\snd_arrow_hit_flesh</sound>
+    <sound>sound\snd_knife_hit_flesh</sound>
+    <sound>sound\snd_step1</sound>
+    <sound>sound\snd_step2</sound>
+    <sound>sound\snd_step3</sound>
+    <sound>sound\snd_swing1</sound>
+    <sound>sound\snd_swing2</sound>
+    <sound>sound\mus_forest_main</sound>
+    <sound>sound\mus_forest_intense</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_player_temp</sprite>
     <sprite>sprites\spr_emeny_temp</sprite>
@@ -21,6 +32,7 @@
     <sprite>sprites\spr_player_run_sideways</sprite>
     <sprite>sprites\spr_player_stand</sprite>
     <sprite>sprites\spr_bow</sprite>
+    <sprite>sprites\spr_raccoonbow</sprite>
     <sprite>sprites\spr_arm2</sprite>
     <sprite>sprites\spr_player_arm</sprite>
     <sprite>sprites\sprite21</sprite>
@@ -28,6 +40,7 @@
     <sprite>sprites\spr_squidbear</sprite>
     <sprite>sprites\spr_squidbear_attack_large</sprite>
     <sprite>sprites\spr_squidbear_attack</sprite>
+    <sprite>sprites\spr_raccoonfox</sprite>
     <sprite>sprites\spr_tree_stump02</sprite>
     <sprite>sprites\spr_fireball_temp</sprite>
     <sprite>sprites\sprite25_rock_01</sprite>
@@ -42,16 +55,21 @@
     <background>background\background</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\audio_play_sound_gain_pitch.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_enemy</object>
     <object>objects\obj_slash</object>
     <object>objects\obj_arrow</object>
+    <object>objects\obj_enemy_arrow</object>
     <object>objects\obj_arrow_stuck</object>
     <object>objects\obj_arrow_ground</object>
     <object>objects\obj_enemy_collider</object>
     <object>objects\obj_enemy_swarmer</object>
+    <object>objects\obj_enemy_archer</object>
     <object>objects\obj_spawn</object>
     <object>objects\obj_enemy_dead</object>
     <object>objects\obj_wizard</object>
@@ -63,6 +81,7 @@
     <object>objects\obj_rock02</object>
     <object>objects\obj_rock03</object>
     <object>objects\obj_treestump02</object>
+    <object>objects\obj_music_player</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_final</room>
