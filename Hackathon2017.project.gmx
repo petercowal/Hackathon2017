@@ -27,6 +27,7 @@
     <object>objects\obj_arrow_ground</object>
     <object>objects\obj_enemy_collider</object>
     <object>objects\obj_enemy_swarmer</object>
+    <object>objects\obj_enemy_dead</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\brady_test_room</room>
