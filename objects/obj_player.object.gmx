@@ -26,13 +26,16 @@
           <argument>
             <kind>1</kind>
             <string>gamepad_id = 0;
-
+myHealth = 4;
 aim_power = 0;
 max_aim_power = 100;
 aim_direction = 0;
 am_dashing = false;
 dash_cool = 0;
 dash_length = 0;
+invinc = 0;
+knockback = false;
+knockback_dur = 0;
 </string>
           </argument>
         </arguments>
@@ -147,7 +150,8 @@ if (aim_power &gt; 0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(gamepad_button_check_pressed(0,gp_shoulderlb) &amp;&amp; dash_cool = 0){
+            <string>if(!knockback){
+if(gamepad_button_check_pressed(0,gp_shoulderlb) &amp;&amp; dash_cool = 0){
 am_dashing = true;
 dash_cool += 60;
 dash_length += 10;
@@ -173,6 +177,7 @@ if (magnitude &lt; 0.5) {
     vspeed = move_speed * move_axis_v * scale;
     if (aim_power == 0) {
         aim_direction = direction;
+            }
         }
     }
 }
@@ -209,6 +214,11 @@ if(dash_cool &gt; 0){
 dash_cool--;
 }
 
+if(knockback_dur &gt; 0){
+knockback_dur--;
+} else{
+knockback = false;
+}
 </string>
           </argument>
         </arguments>
@@ -254,6 +264,105 @@ dash_cool--;
     inst = instance_create(x, y, obj_slash);
     inst.direction = aim_direction;
     inst.image_angle = aim_direction;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Invincibility</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(invinc&gt;0){
+invinc--;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_enemy">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Damage</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(invinc == 0){
+        if(myHealth &lt;=0){
+        instance_destroy();
+}else{
+    myHealth--;
+    invinc +=10; 
+    knockback = true;
+    knockback_dur += 5;
+    }
+}
+
+if(knockback){
+move_towards_point(other.x, other.y, -15);
 }
 </string>
           </argument>
