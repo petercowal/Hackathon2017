@@ -30,6 +30,9 @@
 aim_power = 0;
 max_aim_power = 100;
 aim_direction = 0;
+am_dashing = false;
+dash_cool = 0;
+dash_length = 0;
 </string>
           </argument>
         </arguments>
@@ -138,11 +141,19 @@ if (aim_power &gt; 0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//stores data from gamepad
+            <string>if(gamepad_button_check_pressed(0,gp_shoulderlb) &amp;&amp; dash_cool = 0){
+am_dashing = true;
+dash_cool += 60;
+dash_length += 10;
+}
+
+if(am_dashing){
+    speed = move_speed*2;
+    direction = aim_direction;
+} else{
+//stores data from gamepad
 var move_axis_h = gamepad_axis_value(gamepad_id, gp_axislh);
 var move_axis_v = gamepad_axis_value(gamepad_id, gp_axislv);
-
-
 
 //checks to see if joystick is sufficiently far from center
 var magnitude = sqrt(sqr(move_axis_h) + sqr(move_axis_v));
@@ -156,9 +167,9 @@ if (magnitude &lt; 0.5) {
     vspeed = move_speed * move_axis_v * scale;
     if (aim_power == 0) {
         aim_direction = direction;
+        }
     }
 }
-
 //angle sweeps: slide along walls
 var angle_sweep_size = 80;
 
@@ -180,6 +191,16 @@ if (place_meeting(x + hspeed, y + vspeed, obj_wall)) {
         }
     }
     if (direction == old_direction) speed = 0;
+}
+
+if(dash_length&gt;0){
+dash_length--;
+} else{
+am_dashing=false;
+}
+
+if(dash_cool &gt; 0){
+dash_cool--;
 }
 
 </string>
