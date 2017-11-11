@@ -14,6 +14,7 @@
     <sprite>sprites\spr_bow_temp</sprite>
     <sprite>sprites\spr_arrow_temp</sprite>
     <sprite>sprites\spr_arrow_stuck_temp</sprite>
+    <sprite>sprites\sprite8</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -27,6 +28,7 @@
     <object>objects\obj_arrow_ground</object>
     <object>objects\obj_enemy_collider</object>
     <object>objects\obj_enemy_swarmer</object>
+    <object>objects\obj_spawn</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\brady_test_room</room>

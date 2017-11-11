@@ -37,6 +37,7 @@ invinc = 0;
 knockback = false;
 knockback_dur = 0;
 arrow_count = 3;
+slash_cool = 0;
 </string>
           </argument>
         </arguments>
@@ -263,12 +264,15 @@ knockback = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (aim_power == 0 &amp;&amp; gamepad_button_check_pressed(0, gp_shoulderrb)){
+            <string>if (slash_cool = 0 &amp;&amp; aim_power == 0 &amp;&amp; gamepad_button_check_pressed(0, gp_face3)){
     var inst;
     inst = instance_create(x, y, obj_slash);
     inst.direction = aim_direction;
     inst.image_angle = aim_direction;
-}
+    slash_cool = 12;
+} else if(slash_cool &gt; 0){
+        slash_cool--;
+  }
 </string>
           </argument>
         </arguments>
