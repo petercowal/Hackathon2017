@@ -84,6 +84,7 @@ if (magnitude &gt; 0.5) {
     if (aim_power &gt; 10 &amp;&amp; gamepad_button_check_pressed(gamepad_id, gp_shoulderrb)) {
         var arrow = instance_create(x, y, obj_arrow);
         arrow.direction = aim_direction;
+        arrow.image_angle = aim_direction;
         arrow.speed = 10 + aim_power / 4;
         aim_power = 1;
     }

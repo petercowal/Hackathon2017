@@ -12,6 +12,7 @@
     <sprite>sprites\spr_slash_temp</sprite>
     <sprite>sprites\spr_bow_temp</sprite>
     <sprite>sprites\spr_arrow_temp</sprite>
+    <sprite>sprites\spr_arrow_stuck_temp</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -21,6 +22,8 @@
     <object>objects\obj_enemy</object>
     <object>objects\obj_slash</object>
     <object>objects\obj_arrow</object>
+    <object>objects\obj_arrow_stuck</object>
+    <object>objects\obj_arrow_ground</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\brady_test_room</room>
