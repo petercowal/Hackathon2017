@@ -28,26 +28,16 @@
             <string>event_inherited();
 myHealth = 2;
 
+state = 0;
+state_timer = 0;
+target_x = x;
+target_y = y;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>604</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_inherited</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
       <action>
         <libid>1</libid>
         <id>605</id>
@@ -85,14 +75,55 @@ myHealth = 2;
           <argument>
             <kind>1</kind>
             <string>if instance_exists(obj_player)
-    {
+{
     var inst;
     inst = instance_nearest(x, y, obj_player);
-    mp_potential_step_object(inst.x, inst.y, 5, obj_enemy_collider);
+    if (state == 0) {
+        mp_potential_step_object(inst.x, inst.y, 3, obj_enemy_collider);
+        if (distance_to_object(inst) &lt; 200 &amp;&amp; random(100) &lt; 1) {
+            speed = 0;
+            state = 1;
+            state_timer = 10;
+            target_x = inst.x;
+            target_y = inst.y;
+        }
+    } else if (state == 1) {
+        state_timer --;
+        if (state_timer &lt;= 0) {
+            state_timer = 40;
+            state = 2;
+            move_towards_point(target_x, target_y, 10);
+            vspeed -= 4;
+        }
+    } else {
+        state_timer --;
+        if (state_timer &gt; 20) vspeed += 0.5;
+        if (state_timer &lt; 30) speed = max(speed - 0.5, 0);
+        if (state_timer &lt;= 0) {
+            state_timer = floor(100 + random(200));
+            state = 0;
+            speed = 0;
+        }
     }
+    
+}
 </string>
           </argument>
         </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
   </events>

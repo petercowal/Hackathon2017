@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_enemy_collider</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -88,6 +88,30 @@ if (instance_exists(inst)) {
         y += dy*move_amount;
     }
 
+}
+
+
+//angle sweeps: slide along walls
+var angle_sweep_size = 80;
+
+if (place_meeting(x + hspeed, y + vspeed, obj_wall)) {
+    var old_direction = direction;
+    for (var angle = 0; angle &lt;= angle_sweep_size; angle += 5) {
+        if (!place_meeting(x + speed * cos(angle * pi/180) * cos((direction + angle)*pi/180), 
+                            y - speed * cos(angle * pi/180) * sin((direction + angle)*pi/180), 
+                            obj_wall)) {
+            direction += angle;
+            speed *= cos(angle * pi/180);
+            break;
+        } else if (!place_meeting(x + speed * cos(angle * pi/180) * cos((direction - angle)*pi/180), 
+                            y - speed * cos(angle * pi/180) * sin((direction - angle)*pi/180), 
+                            obj_wall)) {
+            direction -= angle;
+            speed *= cos(angle * pi/180)
+            break;
+        }
+    }
+    if (direction == old_direction) speed = 0;
 }
 </string>
           </argument>
