@@ -72,7 +72,7 @@ alarm_set(0, 100);
             <string>for(var i = 0; i &lt; wave; i++){
 instance_create(x + random(10) ,y + random(10) ,obj_enemy_swarmer);
 }
-wave = wave*2;
+wave = wave + 1;
 alarm_set(0, 60*20);
 </string>
           </argument>

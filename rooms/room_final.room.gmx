@@ -149,6 +149,13 @@
     <instance objName="obj_wall" x="1024" y="1088" name="inst_BB35BB8B" locked="0" code="" scaleX="5.58730173110962" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_music_player" x="128" y="160" name="inst_88EE3D85" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_hud_text" x="672" y="544" name="inst_8B69C752" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_archer_spawn" x="768" y="-32" name="inst_007E1FEC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_archer_spawn" x="775" y="-31" name="inst_400642CF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_archer_spawn" x="966" y="1086" name="inst_96BDBFE6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_wizard_spawn" x="768" y="1152" name="inst_5968ACC0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_player" x="800" y="640" name="inst_7660F093" locked="0" code="gamepad_id = 1;&#xA;image_blend = c_aqua;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_player" x="896" y="640" name="inst_79370568" locked="0" code="gamepad_id = 2;&#xA;image_blend = c_fuchsia;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_player" x="992" y="640" name="inst_89A75C6F" locked="0" code="gamepad_id = 3;&#xA;image_blend = c_yellow;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

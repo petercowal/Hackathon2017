@@ -15,6 +15,8 @@
     <sound>sound\snd_swing2</sound>
     <sound>sound\mus_forest_main</sound>
     <sound>sound\mus_forest_intense</sound>
+    <sound>sound\snd_fireball</sound>
+    <sound>sound\snd_click</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_player_temp</sprite>
@@ -52,9 +54,14 @@
     <sprite>sprites\spr_wizard_temp</sprite>
     <sprite>sprites\spr_arrowfinal</sprite>
     <sprite>sprites\spr_arrow_stuck</sprite>
+    <sprite>sprites\spr_wizard</sprite>
+    <sprite>sprites\spr_fireball</sprite>
+    <sprite>sprites\spr_press_start</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background</background>
+    <background>background\bg_tutorial</background>
+    <background>background\bg_title</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -73,6 +80,8 @@
     <object>objects\obj_enemy_swarmer</object>
     <object>objects\obj_enemy_archer</object>
     <object>objects\obj_spawn</object>
+    <object>objects\obj_archer_spawn</object>
+    <object>objects\obj_wizard_spawn</object>
     <object>objects\obj_enemy_dead</object>
     <object>objects\obj_wizard</object>
     <object>objects\obj_fireball</object>
@@ -85,8 +94,12 @@
     <object>objects\obj_treestump02</object>
     <object>objects\obj_music_player</object>
     <object>objects\obj_hud_text</object>
+    <object>objects\obj_player_manager</object>
+    <object>objects\obj_title_manager</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room_title</room>
+    <room>rooms\room_lobby</room>
     <room>rooms\room_final</room>
     <room>rooms\brady_test_room</room>
     <room>rooms\room_main</room>
