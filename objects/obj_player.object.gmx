@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -110,9 +110,9 @@ if(arrow_count &gt; 0){
 }
 //this controls the maximum movement speed
 if (aim_power &gt; 0) {
-    move_speed = max(7 - aim_power / 10, 3);
+    move_speed = max(4 - aim_power / 20, 2);
 } else {
-    move_speed = 10;
+    move_speed = 5;
 }
 </string>
           </argument>

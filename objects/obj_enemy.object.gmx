@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_enemy_collider</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -88,6 +88,30 @@ if (instance_exists(inst)) {
         y += dy*move_amount;
     }
 
+}
+
+
+//angle sweeps: slide along walls
+var angle_sweep_size = 80;
+
+if (place_meeting(x + hspeed, y + vspeed, obj_wall)) {
+    var old_direction = direction;
+    for (var angle = 0; angle &lt;= angle_sweep_size; angle += 5) {
+        if (!place_meeting(x + speed * cos(angle * pi/180) * cos((direction + angle)*pi/180), 
+                            y - speed * cos(angle * pi/180) * sin((direction + angle)*pi/180), 
+                            obj_wall)) {
+            direction += angle;
+            speed *= cos(angle * pi/180);
+            break;
+        } else if (!place_meeting(x + speed * cos(angle * pi/180) * cos((direction - angle)*pi/180), 
+                            y - speed * cos(angle * pi/180) * sin((direction - angle)*pi/180), 
+                            obj_wall)) {
+            direction -= angle;
+            speed *= cos(angle * pi/180)
+            break;
+        }
+    }
+    if (direction == old_direction) speed = 0;
 }
 </string>
           </argument>
@@ -175,23 +199,38 @@ invinc--;
           <argument>
             <kind>1</kind>
             <string>if(invinc == 0){
-    myHealth--;
+    myHealth-= 2;
     invinc +=10;
 
-    var arrow_stuck = instance_create(other.x, other.y, obj_arrow_stuck);
-    arrow_stuck.stuck = id;
-    arrow_stuck.image_angle = other.image_angle;
-    arrow_stuck.offset_angle = other.image_angle;
-    arrow_stuck.offset_mirror = image_xscale;
-    arrow_stuck.offset_x = other.x - x;
-    arrow_stuck.offset_y = other.y - y;
+    if(myHealth &lt;=0){
+        var arrow_ground = instance_create(other.x, other.y, obj_arrow_ground);
+        arrow_ground.hspeed = other.hspeed/2;
+        arrow_ground.vspeed = other.vspeed/2;
+        arrow_ground.image_angle = other.image_angle;
+        
+        var enemy_dead = instance_create(x, y, obj_enemy_dead);
+        enemy_dead.sprite_index = sprite_index;
+        
+        enemy_dead.hspeed = other.hspeed/2;
+        enemy_dead.vspeed = other.vspeed/2;
+        enemy_dead.friction = arrow_ground.friction;
+        
+        instance_destroy();
+    }
+    else {
+        var arrow_stuck = instance_create(other.x, other.y, obj_arrow_stuck);
+        arrow_stuck.stuck = id;
+        arrow_stuck.image_angle = other.image_angle;
+        arrow_stuck.offset_angle = other.image_angle;
+        arrow_stuck.offset_mirror = image_xscale;
+        arrow_stuck.offset_x = other.x - x;
+        arrow_stuck.offset_y = other.y - y;
+        
+    }
     with (other) do {
         instance_destroy();
     }
-
-    if(myHealth &lt;=0){
-        instance_destroy();
-    }
+    
 }
 </string>
           </argument>
