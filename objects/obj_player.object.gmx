@@ -81,7 +81,7 @@ if (magnitude &gt; 0.5) {
     aim_direction = arctan2(-aim_axis_v, aim_axis_h) * 180/pi;
     aim_power = min(max_aim_power, aim_power + 1);
     
-    if (aim_power &gt; 10 &amp;&amp; gamepad_button_check_pressed(gamepad_id, gp_shoulderr)) {
+    if (aim_power &gt; 10 &amp;&amp; gamepad_button_check_pressed(gamepad_id, gp_shoulderrb)) {
         var arrow = instance_create(x, y, obj_arrow);
         arrow.direction = aim_direction;
         arrow.speed = 10 + aim_power / 4;
@@ -154,6 +154,9 @@ if (magnitude &lt; 0.5) {
     var scale = min(1, 1/magnitude);
     hspeed = move_speed * move_axis_h * scale;
     vspeed = move_speed * move_axis_v * scale;
+    if (aim_power == 0) {
+        aim_direction = direction;
+    }
 }
 
 //angle sweeps: slide along walls
@@ -219,9 +222,11 @@ if (place_meeting(x + hspeed, y + vspeed, obj_wall)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if gamepad_button_check_pressed(0, gp_shoulderrb){
+            <string>if (aim_power == 0 &amp;&amp; gamepad_button_check_pressed(0, gp_shoulderrb)){
     var inst;
-    instance_create(x, y-32, obj_slash);
+    inst = instance_create(x, y, obj_slash);
+    inst.direction = aim_direction;
+    inst.image_angle = aim_direction;
 }
 </string>
           </argument>
