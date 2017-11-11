@@ -376,6 +376,75 @@ arrow_count++;
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_enemy_arrow">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Damage</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(invinc == 0){
+        if(myHealth &lt;=0){
+        instance_destroy();
+}else{
+    myHealth--;
+    invinc +=10; 
+    knockback = true;
+    knockback_dur += 5;
+    }
+}
+
+if(knockback){
+move_towards_point(other.x, other.y, -15);
+}
+
+var arrow_stuck = instance_create(other.x, other.y, obj_arrow_stuck);
+arrow_stuck.stuck = id;
+arrow_stuck.image_angle = other.image_angle;
+arrow_stuck.offset_angle = other.image_angle;
+arrow_stuck.offset_mirror = image_xscale;
+arrow_stuck.offset_x = other.x - x;
+arrow_stuck.offset_y = other.y - y;
+        
+    
+with (other) do {
+    instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="4" ename="obj_enemy">
       <action>
         <libid>1</libid>

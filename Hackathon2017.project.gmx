@@ -21,6 +21,7 @@
     <sprite>sprites\spr_player_run_sideways</sprite>
     <sprite>sprites\spr_player_stand</sprite>
     <sprite>sprites\spr_bow</sprite>
+    <sprite>sprites\spr_raccoonbow</sprite>
     <sprite>sprites\spr_arm2</sprite>
     <sprite>sprites\spr_player_arm</sprite>
     <sprite>sprites\sprite21</sprite>
@@ -28,6 +29,8 @@
     <sprite>sprites\spr_squidbear</sprite>
     <sprite>sprites\spr_squidbear_attack_large</sprite>
     <sprite>sprites\spr_squidbear_attack</sprite>
+    <sprite>sprites\spr_raccoonfox</sprite>
+    <sprite>sprites\sprite24</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -37,16 +40,18 @@
     <object>objects\obj_enemy</object>
     <object>objects\obj_slash</object>
     <object>objects\obj_arrow</object>
+    <object>objects\obj_enemy_arrow</object>
     <object>objects\obj_arrow_stuck</object>
     <object>objects\obj_arrow_ground</object>
     <object>objects\obj_enemy_collider</object>
     <object>objects\obj_enemy_swarmer</object>
+    <object>objects\obj_enemy_archer</object>
     <object>objects\obj_spawn</object>
     <object>objects\obj_enemy_dead</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\brady_test_room</room>
     <room>rooms\room_main</room>
+    <room>rooms\brady_test_room</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
