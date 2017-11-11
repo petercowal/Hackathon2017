@@ -15,8 +15,10 @@
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_wall</object>
+    <object>objects\obj_enemy</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\brady_test_room</room>
     <room>rooms\room_main</room>
   </rooms>
   <help>
