@@ -25,11 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (speed &gt; 0) {
+            <string>image_speed = 0;
+
+if (speed &gt; 0) {
     if (place_meeting(x + hspeed, y + vspeed, obj_wall)) {
         speed = 0;
     }
 }
+
+image_blend = c_gray;
 </string>
           </argument>
         </arguments>
