@@ -82,15 +82,20 @@ var aim_axis_v = gamepad_axis_value(gamepad_id, gp_axisrv);
 var magnitude = sqrt(sqr(aim_axis_h) + sqr(aim_axis_v));
 if (magnitude &gt; 0.5) {
     aim_direction = arctan2(-aim_axis_v, aim_axis_h) * 180/pi;
-    aim_power = min(max_aim_power, aim_power + 1);
-    
-    if (aim_power &gt; 10 &amp;&amp; gamepad_button_check_pressed(gamepad_id, gp_shoulderrb)) {
+    if (aim_power &gt; 10 &amp;&amp; gamepad_button_check_released(gamepad_id, gp_shoulderrb)) {
         var arrow = instance_create(x, y, obj_arrow);
         arrow.direction = aim_direction;
         arrow.image_angle = aim_direction;
         arrow.speed = 10 + aim_power / 4;
         aim_power = 1;
     }
+    if (gamepad_button_check(gamepad_id, gp_shoulderrb)) {
+        aim_power = min(max_aim_power, aim_power + 1);
+    } else {
+        aim_power = 1;
+    }
+    
+
     
 } else {
     aim_power = 0;
