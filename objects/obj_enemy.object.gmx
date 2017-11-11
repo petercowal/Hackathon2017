@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_enemy_collider</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -49,7 +49,7 @@ invinc = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Chasing</string>
+            <string>Avoidance</string>
           </argument>
         </arguments>
       </action>
@@ -69,12 +69,26 @@ invinc = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if instance_exists(obj_player)
-    {
-    var inst;
-    inst = instance_nearest(x, y, obj_player);
-    mp_potential_step_object(inst.x, inst.y, 2, obj_wall);
+            <string>var inst;
+inst = instance_place(x, y, obj_enemy_collider);
+
+if (instance_exists(inst)) {
+    var dx = x - inst.x;
+    var dy = y - inst.y;
+    var magnitude = sqrt(sqr(dx) + sqr(dy)) + 1;
+    dx /= magnitude;
+    dy /= magnitude;
+
+    var move_amount = 4;
+    if (!place_meeting(x + dx*move_amount, y, obj_wall)) {
+        x += dx*move_amount;
+
     }
+    if (!place_meeting(x, y + dy*move_amount, obj_wall)) {
+        y += dy*move_amount;
+    }
+
+}
 </string>
           </argument>
         </arguments>
@@ -174,7 +188,7 @@ invinc--;
     with (other) do {
         instance_destroy();
     }
-    
+
     if(myHealth &lt;=0){
         instance_destroy();
     }
@@ -224,7 +238,7 @@ invinc--;
             <string>if(invinc == 0){
     myHealth--;
     invinc +=10;
-    
+
     if(myHealth &lt;=0){
         instance_destroy();
     }

@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_enemy_collider</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -93,12 +93,12 @@ if (magnitude &gt; 0.5) {
         aim_power = 1;
     }
     if (gamepad_button_check(gamepad_id, gp_shoulderrb)) {
-        aim_power = min(max_aim_power, aim_power + 1);
+        if (aim_power &lt; max_aim_power) {
+            aim_power ++;
+        }
     } else {
         aim_power = 1;
     }
-    
-
     
 } else {
     aim_power = 0;
