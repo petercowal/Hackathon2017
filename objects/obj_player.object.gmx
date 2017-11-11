@@ -36,6 +36,7 @@ dash_length = 0;
 invinc = 0;
 knockback = false;
 knockback_dur = 0;
+arrow_count = 3;
 </string>
           </argument>
         </arguments>
@@ -82,28 +83,31 @@ knockback_dur = 0;
 var aim_axis_h = gamepad_axis_value(gamepad_id, gp_axisrh);
 var aim_axis_v = gamepad_axis_value(gamepad_id, gp_axisrv);
 
+//aiming
 var magnitude = sqrt(sqr(aim_axis_h) + sqr(aim_axis_v));
 if (magnitude &gt; 0.5) {
     aim_direction = arctan2(-aim_axis_v, aim_axis_h) * 180/pi;
+}
+if(arrow_count &gt; 0){
+    //shooting
     if (aim_power &gt; 10 &amp;&amp; gamepad_button_check_released(gamepad_id, gp_shoulderrb)) {
         var arrow = instance_create(x, y, obj_arrow);
         arrow.direction = aim_direction;
         arrow.image_angle = aim_direction;
         arrow.speed = 10 + aim_power / 4;
         aim_power = 1;
+        arrow_count--;
     }
     if (gamepad_button_check(gamepad_id, gp_shoulderrb)) {
         if (aim_power &lt; max_aim_power) {
             aim_power ++;
-        }
-    } else {
+        } else {
         aim_power = 1;
-    }
-    
-} else {
+           }
+    } else {
     aim_power = 0;
+      }
 }
-
 //this controls the maximum movement speed
 if (aim_power &gt; 0) {
     move_speed = max(7 - aim_power / 10, 3);
@@ -307,6 +311,54 @@ knockback = false;
             <kind>1</kind>
             <string>if(invinc&gt;0){
 invinc--;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_arrow_ground">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Pickup</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(arrow_count &lt; 10){
+    with(other)do{
+        instance_destroy();
+    }
+arrow_count++;
 }
 </string>
           </argument>
