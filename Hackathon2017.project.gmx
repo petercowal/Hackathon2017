@@ -28,8 +28,19 @@
     <sprite>sprites\spr_squidbear</sprite>
     <sprite>sprites\spr_squidbear_attack_large</sprite>
     <sprite>sprites\spr_squidbear_attack</sprite>
+    <sprite>sprites\spr_tree_stump02</sprite>
+    <sprite>sprites\spr_fireball_temp</sprite>
+    <sprite>sprites\sprite25_rock_01</sprite>
+    <sprite>sprites\sprite26_rock_02</sprite>
+    <sprite>sprites\sprite27_rock_03</sprite>
+    <sprite>sprites\sprite28_tree_01</sprite>
+    <sprite>sprites\sprite29_tree_02</sprite>
+    <sprite>sprites\sprite30_tree_stump_01</sprite>
+    <sprite>sprites\spr_wizard_temp</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_player</object>
@@ -43,8 +54,18 @@
     <object>objects\obj_enemy_swarmer</object>
     <object>objects\obj_spawn</object>
     <object>objects\obj_enemy_dead</object>
+    <object>objects\obj_wizard</object>
+    <object>objects\obj_fireball</object>
+    <object>objects\obj_tree01</object>
+    <object>objects\obj_tree02</object>
+    <object>objects\obj_tree_stump01</object>
+    <object>objects\obj_rock01</object>
+    <object>objects\obj_rock02</object>
+    <object>objects\obj_rock03</object>
+    <object>objects\obj_treestump02</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room_final</room>
     <room>rooms\brady_test_room</room>
     <room>rooms\room_main</room>
   </rooms>
