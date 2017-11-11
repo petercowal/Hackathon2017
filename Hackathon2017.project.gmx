@@ -14,6 +14,20 @@
     <sprite>sprites\spr_bow_temp</sprite>
     <sprite>sprites\spr_arrow_temp</sprite>
     <sprite>sprites\spr_arrow_stuck_temp</sprite>
+    <sprite>sprites\spr_player</sprite>
+    <sprite>sprites\spr_player_large</sprite>
+    <sprite>sprites\spr_player_run_backwards</sprite>
+    <sprite>sprites\spr_player_run_forwards</sprite>
+    <sprite>sprites\spr_player_run_sideways</sprite>
+    <sprite>sprites\spr_player_stand</sprite>
+    <sprite>sprites\spr_bow</sprite>
+    <sprite>sprites\spr_arm2</sprite>
+    <sprite>sprites\spr_player_arm</sprite>
+    <sprite>sprites\sprite21</sprite>
+    <sprite>sprites\spr_squidbear_large</sprite>
+    <sprite>sprites\spr_squidbear</sprite>
+    <sprite>sprites\spr_squidbear_attack_large</sprite>
+    <sprite>sprites\spr_squidbear_attack</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
