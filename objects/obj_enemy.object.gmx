@@ -199,6 +199,8 @@ invinc--;
           <argument>
             <kind>1</kind>
             <string>if(invinc == 0){
+
+    audio_play_sound_gain_pitch(snd_arrow_hit_flesh, 1, false, 1, 0.6 + random(0.8));
     myHealth-= 2;
     invinc +=10;
 
@@ -274,7 +276,11 @@ invinc--;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(invinc == 0){
+            <string>
+
+if(invinc == 0){
+
+    audio_play_sound_gain_pitch(snd_knife_hit_flesh, 1, false, 1, 0.6 + random(0.8));
     myHealth--;
     invinc +=10;
 

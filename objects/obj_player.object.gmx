@@ -42,6 +42,8 @@ knockback = false;
 knockback_dur = 0;
 arrow_count = 3;
 slash_cool = 0;
+
+step_timer = 0;
 </string>
           </argument>
         </arguments>
@@ -102,6 +104,7 @@ if (magnitude &gt; 0.5) {
             arrow.speed = 10 + aim_power / 4;
             aim_power = 1;
             arrow_count--;
+            
         }
         
     }
@@ -189,9 +192,22 @@ if (magnitude &lt; 0.5) {
     vspeed = move_speed * move_axis_v * scale;
     if (aim_power == 0) {
         aim_direction = direction;
+        }
+        step_timer ++;
+        if (step_timer &gt;= 20) {
+            step_timer = floor(random(3));
+            if (random(3) &lt; 1) {
+                audio_play_sound_gain_pitch(snd_step1, 1, false, 0.4, 0.8 + random(0.4));
+            } else if (random(2) &lt; 1) {
+                audio_play_sound_gain_pitch(snd_step2, 1, false, 0.4, 0.8 + random(0.4));
+            } else {
+                audio_play_sound_gain_pitch(snd_step3, 1, false, 0.4, 0.8 + random(0.4));
             }
         }
     }
+    
+}
+    
 }
 //angle sweeps: slide along walls
 var angle_sweep_size = 80;
@@ -414,18 +430,20 @@ arrow_count++;
           <argument>
             <kind>1</kind>
             <string>if(invinc == 0){
-        if(myHealth &lt;=0){
-        instance_destroy();
-}else{
     myHealth--;
-    invinc +=10; 
-    knockback = true;
-    knockback_dur += 5;
+    audio_play_sound_gain_pitch(snd_arrow_hit_flesh, 1, false, 1, 0.6 + random(0.8));
+    if(myHealth &lt;=0){
+        instance_destroy();
+    }else{
+    
+        invinc +=10; 
+        knockback = true;
+        knockback_dur += 5;
     }
 }
 
 if(knockback){
-move_towards_point(other.x, other.y, -15);
+move_towards_point(other.x, other.y, -5);
 }
 
 var arrow_stuck = instance_create(other.x, other.y, obj_arrow_stuck);
@@ -483,6 +501,7 @@ with (other) do {
           <argument>
             <kind>1</kind>
             <string>if(invinc == 0){
+    audio_play_sound_gain_pitch(snd_arrow_hit_flesh, 1, false, 1, 0.6 + random(0.8));
         if(myHealth &lt;=0){
         instance_destroy();
 }else{

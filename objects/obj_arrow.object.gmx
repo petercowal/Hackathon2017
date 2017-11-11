@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>flight_time = 20;
+audio_play_sound_gain_pitch(snd_arrow_hit_wood, 1, false, 1, 0.7 + random(0.6));
 </string>
           </argument>
         </arguments>
@@ -59,12 +60,15 @@
             x += hspeed * p;
             y += vspeed * p;
             speed = 0;
+            
             break;
         }
     }
     
     
 } else {
+    audio_play_sound_gain_pitch(snd_arrow_hit_wood, 1, false, 0.3, 0.7 + random(0.6));
+    audio_play_sound_gain_pitch(snd_step1, 1, false, 1, 0.3 + random(0.3));
     //turn into an inert projectile to be picked up
     var inst = instance_create(x, y, obj_arrow_ground);
     inst.image_angle = direction;
