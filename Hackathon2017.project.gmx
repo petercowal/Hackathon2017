@@ -53,6 +53,7 @@
   </sprites>
   <backgrounds name="background">
     <background>background\background</background>
+    <background>background\bg_tutorial</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -71,6 +72,8 @@
     <object>objects\obj_enemy_swarmer</object>
     <object>objects\obj_enemy_archer</object>
     <object>objects\obj_spawn</object>
+    <object>objects\obj_archer_spawn</object>
+    <object>objects\obj_wizard_spawn</object>
     <object>objects\obj_enemy_dead</object>
     <object>objects\obj_wizard</object>
     <object>objects\obj_fireball</object>
@@ -82,8 +85,10 @@
     <object>objects\obj_rock03</object>
     <object>objects\obj_treestump02</object>
     <object>objects\obj_music_player</object>
+    <object>objects\obj_player_manager</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room_lobby</room>
     <room>rooms\room_final</room>
     <room>rooms\brady_test_room</room>
     <room>rooms\room_main</room>

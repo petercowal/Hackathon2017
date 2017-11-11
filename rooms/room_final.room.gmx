@@ -148,6 +148,10 @@
     <instance objName="obj_wall" x="736" y="1088" name="inst_345B1C0E" locked="0" code="" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="1024" y="1088" name="inst_BB35BB8B" locked="0" code="" scaleX="5.58730173110962" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_music_player" x="128" y="160" name="inst_88EE3D85" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_archer_spawn" x="780" y="-33" name="inst_B8B09424" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_archer_spawn" x="967" y="1103" name="inst_D9CE6F51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_wizard_spawn" x="704" y="192" name="inst_14861EC3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_player" x="992" y="640" name="inst_24EA0E64" locked="0" code="gamepad_id = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

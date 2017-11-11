@@ -52,6 +52,29 @@ step_timer = 0;
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!gamepad_is_connected(gamepad_id)) {
+    instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>605</id>
         <kind>0</kind>
         <userelative>0</userelative>
@@ -123,7 +146,7 @@ if (magnitude &gt; 0.5) {
 if (aim_power &gt; 0) {
     move_speed = max(4 - aim_power / 20, 2);
 } else {
-    move_speed = 5;
+    move_speed = 7;
 }
 </string>
           </argument>
@@ -166,14 +189,16 @@ if (aim_power &gt; 0) {
           <argument>
             <kind>1</kind>
             <string>if(!knockback){
-if(gamepad_button_check_pressed(0,gp_shoulderlb) &amp;&amp; dash_cool = 0){
+if((gamepad_button_check_pressed(gamepad_id,gp_shoulderlb) || gamepad_button_check_pressed(gamepad_id, gp_face1)) &amp;&amp; dash_cool = 0){
 am_dashing = true;
+if (invinc &lt; 15) invinc = 15;
 dash_cool += 60;
-dash_length += 10;
+dash_length += 8;
+audio_play_sound_gain_pitch(snd_swing2, 1, false, 1, 1.2 + random(0.4));
 }
 
 if(am_dashing){
-    speed = move_speed*2;
+    speed = move_speed*2.5;
     direction = aim_direction;
 } else{
 //stores data from gamepad
@@ -287,7 +312,7 @@ knockback = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (slash_cool = 0 &amp;&amp; aim_power == 0 &amp;&amp; gamepad_button_check_pressed(0, gp_face3)){
+            <string>if (slash_cool = 0 &amp;&amp; aim_power == 0 &amp;&amp; gamepad_button_check_pressed(gamepad_id, gp_face3)){
     var inst;
     inst = instance_create(x, y, obj_slash);
     inst.direction = aim_direction;
@@ -386,14 +411,14 @@ invinc--;
         instance_destroy();
 }else{
     myHealth--;
-    invinc +=10; 
+    invinc +=60; 
     knockback = true;
     knockback_dur += 5;
     }
 }
 
 if(knockback){
-move_towards_point(other.x, other.y, -15);
+move_towards_point(other.x, other.y, -3);
 }
 </string>
           </argument>
@@ -492,7 +517,7 @@ arrow_count++;
         instance_destroy();
     }else{
     
-        invinc +=10; 
+        invinc +=60; 
         knockback = true;
         knockback_dur += 5;
     }
@@ -562,14 +587,14 @@ with (other) do {
         instance_destroy();
 }else{
     myHealth--;
-    invinc +=10; 
+    invinc +=60; 
     knockback = true;
     knockback_dur += 5;
     }
 }
 
 if(knockback){
-move_towards_point(other.x, other.y, -15);
+move_towards_point(other.x, other.y, -5);
 }
 </string>
           </argument>
@@ -593,7 +618,11 @@ move_towards_point(other.x, other.y, -15);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var sine = -sin(aim_direction * pi / 180);
+            <string>if (invinc &gt; 0) image_alpha = 0.5;
+else image_alpha = 1;
+
+
+var sine = -sin(aim_direction * pi / 180);
 var cosine = cos(aim_direction * pi / 180);
 if (speed &gt; 0.5) {
     
@@ -616,32 +645,32 @@ if (speed &gt; 0.5) {
 if (sine &lt; 0.5) {
     if (aim_power &gt; 0) {
         if (cosine &lt; 0)
-            draw_sprite_ext(spr_arm2, -1, x, y-5, 1 + aim_power/700, 1 - aim_power/700, aim_direction, c_white, 1);
+            draw_sprite_ext(spr_arm2, -1, x, y-5, 1 + aim_power/700, 1 - aim_power/700, aim_direction, c_white, image_alpha);
         else
-            draw_sprite_ext(spr_arm2, -1, x, y-5, 1 + aim_power/700, -1 + aim_power/700, aim_direction, c_white, 1);
+            draw_sprite_ext(spr_arm2, -1, x, y-5, 1 + aim_power/700, -1 + aim_power/700, aim_direction, c_white, image_alpha);
     }
 }
 if (aim_power &gt; 0 &amp;&amp; sine &lt;= 0) {
     if (cosine &lt; 0)
-        draw_sprite_ext(spr_bow, -1, x, y-8, 1 + aim_power/700, 1 - aim_power/700, aim_direction, c_white, 1);
+        draw_sprite_ext(spr_bow, -1, x, y-8, 1 + aim_power/700, 1 - aim_power/700, aim_direction, c_white, image_alpha);
     else
-        draw_sprite_ext(spr_bow, -1, x, y-8, 1 + aim_power/700, -1 + aim_power/700, aim_direction, c_white, 1);
+        draw_sprite_ext(spr_bow, -1, x, y-8, 1 + aim_power/700, -1 + aim_power/700, aim_direction, c_white, image_alpha);
 }
 
 draw_self();
 if (sine &gt; 0.5) {
     if (aim_power &gt; 0) {
         if (cosine &lt; 0)
-            draw_sprite_ext(spr_arm2, -1, x, y-5, 1 + aim_power/700, 1 - aim_power/700, aim_direction, c_white, 1);
+            draw_sprite_ext(spr_arm2, -1, x, y-5, 1 + aim_power/700, 1 - aim_power/700, aim_direction, c_white, image_alpha);
         else
-            draw_sprite_ext(spr_arm2, -1, x, y-5, 1 + aim_power/700, -1 + aim_power/700, aim_direction, c_white, 1);
+            draw_sprite_ext(spr_arm2, -1, x, y-5, 1 + aim_power/700, -1 + aim_power/700, aim_direction, c_white, image_alpha);
     }
 }
 if (aim_power &gt; 0 &amp;&amp; sine &gt; 0) {
     if (cosine &lt; 0)
-        draw_sprite_ext(spr_bow, -1, x, y-8, 1 + aim_power/700, 1 - aim_power/700, aim_direction, c_white, 1);
+        draw_sprite_ext(spr_bow, -1, x, y-8, 1 + aim_power/700, 1 - aim_power/700, aim_direction, c_white, image_alpha);
     else
-        draw_sprite_ext(spr_bow, -1, x, y-8, 1 + aim_power/700, -1 + aim_power/700, aim_direction, c_white, 1);
+        draw_sprite_ext(spr_bow, -1, x, y-8, 1 + aim_power/700, -1 + aim_power/700, aim_direction, c_white, image_alpha);
 }
 </string>
           </argument>

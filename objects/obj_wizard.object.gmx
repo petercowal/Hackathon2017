@@ -54,6 +54,10 @@ rad = 2;
 ball_x = x;
 ball_y = y;
 pattern_dur = 600;
+
+if (instance_exists(obj_music_player)) {
+    audio_sound_gain(obj_music_player.melody, 1, 3000);
+}
 </string>
           </argument>
         </arguments>
