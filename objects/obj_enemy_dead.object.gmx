@@ -34,6 +34,13 @@ if (speed &gt; 0) {
 }
 
 image_blend = c_gray;
+
+
+if(image_alpha &lt; 0.05){
+    instance_destroy();
+} else{
+       image_alpha-=0.001; 
+  }
 </string>
           </argument>
         </arguments>

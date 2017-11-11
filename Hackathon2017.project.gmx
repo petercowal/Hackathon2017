@@ -50,6 +50,8 @@
     <sprite>sprites\sprite29_tree_02</sprite>
     <sprite>sprites\sprite30_tree_stump_01</sprite>
     <sprite>sprites\spr_wizard_temp</sprite>
+    <sprite>sprites\spr_arrowfinal</sprite>
+    <sprite>sprites\spr_arrow_stuck</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background</background>
@@ -82,6 +84,7 @@
     <object>objects\obj_rock03</object>
     <object>objects\obj_treestump02</object>
     <object>objects\obj_music_player</object>
+    <object>objects\obj_hud_text</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_final</room>
