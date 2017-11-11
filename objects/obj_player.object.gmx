@@ -27,13 +27,101 @@
             <kind>1</kind>
             <string>gamepad_id = 0;
 
-
+aim_power = 0;
+max_aim_power = 100;
+aim_direction = 0;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>aiming</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//stores data from gamepad
+var aim_axis_h = gamepad_axis_value(gamepad_id, gp_axisrh);
+var aim_axis_v = gamepad_axis_value(gamepad_id, gp_axisrv);
+
+var magnitude = sqrt(sqr(aim_axis_h) + sqr(aim_axis_v));
+if (magnitude &gt; 0.5) {
+    aim_direction = arctan2(-aim_axis_v, aim_axis_h) * 180/pi;
+    aim_power = min(max_aim_power, aim_power + 1);
+    
+    if (aim_power &gt; 10 &amp;&amp; gamepad_button_check_pressed(gamepad_id, gp_shoulderr)) {
+        var arrow = instance_create(x, y, obj_arrow);
+        arrow.direction = aim_direction;
+        arrow.speed = 10 + aim_power / 4;
+        aim_power = 1;
+    }
+    
+} else {
+    aim_power = 0;
+}
+
+//this controls the maximum movement speed
+if (aim_power &gt; 0) {
+    move_speed = max(7 - aim_power / 10, 3);
+} else {
+    move_speed = 10;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>movement</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -54,8 +142,7 @@
 var move_axis_h = gamepad_axis_value(gamepad_id, gp_axislh);
 var move_axis_v = gamepad_axis_value(gamepad_id, gp_axislv);
 
-//this controls the maximum movement speed
-move_speed = 10;
+
 
 //checks to see if joystick is sufficiently far from center
 var magnitude = sqrt(sqr(move_axis_h) + sqr(move_axis_v));
@@ -135,6 +222,37 @@ if (place_meeting(x + hspeed, y + vspeed, obj_wall)) {
             <string>if gamepad_button_check_pressed(0, gp_shoulderrb){
     var inst;
     instance_create(x, y-32, obj_slash);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+if (aim_power &gt; 0 &amp;&amp; sin(aim_direction * pi/180) &gt; 0) {
+    draw_sprite_ext(spr_bow_temp, -1, x, y, 1 + aim_power/300, 1 - aim_power/300, aim_direction, c_white, 1);
+}
+
+draw_self();
+if (aim_power &gt; 0 &amp;&amp; sin(aim_direction * pi/180) &lt;= 0) {
+    draw_sprite_ext(spr_bow_temp, -1, x, y, 1 + aim_power/300, 1 - aim_power/300, aim_direction, c_white, 1);
 }
 </string>
           </argument>
